@@ -31,8 +31,8 @@ import { useUserStore } from "../stores/userStore.js";
 import { useNotify } from "../composables/Notify";
 import { useRouter } from "vue-router";
 
-const email = ref("prueba@gmail.com");
-const password = ref("1234567");
+const email = ref("");
+const password = ref("");
 
 const loading = ref(false);
 

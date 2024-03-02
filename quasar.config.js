@@ -66,7 +66,7 @@ module.exports = configure(function (ctx) {
       env: {
         URL_SERVER: ctx.dev
           ? "http://localhost:5000/api"
-          : "https://app-notas-yfwd.onrender.com/api",
+          : "https://app-notas-api.onrender.com/api",
         URL_FRONT: ctx.dev
           ? "http://localhost:9000"
           : "https://front-url.onrender.com",
