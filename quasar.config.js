@@ -64,7 +64,9 @@ module.exports = configure(function (ctx) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        URL_SERVER: ctx.dev ? "http://localhost:5000/api" : "",
+        URL_SERVER: ctx.dev
+          ? "http://localhost:5000/api"
+          : "https://app-notas-yfwd.onrender.com/api",
         URL_FRONT: ctx.dev
           ? "http://localhost:9000"
           : "https://front-url.onrender.com",
