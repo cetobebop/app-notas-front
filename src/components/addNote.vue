@@ -24,5 +24,3 @@ import optionPanelBtn from "./optionPanelBtn.vue";
 
 const value = ref(false);
 </script>
-
-<style scope></style>

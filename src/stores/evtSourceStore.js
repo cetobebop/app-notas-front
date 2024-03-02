@@ -9,16 +9,13 @@ export const useEvtSourceStore = defineStore("completedNotesStore", () => {
 
   async function notesServerEvent() {
     const idUser = localStorage.getItem("user");
-    alert("se ejecuto el eventSource");
+
     try {
       evtSource = new EventSource(
         process.env.URL_SERVER + `/notes/note_event/${idUser}`
       );
 
       evtSource.addEventListener("message", (e) => {
-        console.log("event");
-        console.log(e.data);
-
         notificationStore.notificationsLength += 1;
       });
 

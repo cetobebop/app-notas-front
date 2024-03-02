@@ -9,7 +9,7 @@
       <notesContainer></notesContainer>
     </div>
   </div>
-  <notesPagination></notesPagination>
+  <notesPagination class="q-mb-md"></notesPagination>
 </template>
 
 <script setup>

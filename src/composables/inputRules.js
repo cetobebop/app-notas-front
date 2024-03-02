@@ -13,8 +13,22 @@ export const useRules = () => {
     else if (val.length < 6) return "Password necesita mas de 5 caracteres";
   };
 
+  const vTitleNote = (val) => {
+    if (!val) return "Requerido";
+    else if (val.length > 50)
+      return "Titulo no puede sobrepasar los 50 caracteres";
+  };
+
+  const vMessageNote = (val) => {
+    if (!val) return "Requerido";
+    else if (val.length > 100)
+      return "Titulo no puede sobrepasar los 100 caracteres";
+  };
+
   return {
     vEmail,
     vPassword,
+    vTitleNote,
+    vMessageNote,
   };
 };

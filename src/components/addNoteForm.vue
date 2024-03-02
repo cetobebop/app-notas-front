@@ -8,15 +8,18 @@
       placeholder="Sin Título"
       class="titulo q-ma-md q-mb-sm"
       v-model="title"
+      maxlength="50"
     />
+
     <textarea
-      class="q-ma-md"
-      placeholder="Sin Descripcion"
+      class="text-area q-ma-md"
+      placeholder="Sin Descripción"
       name=""
       id=""
       cols="30"
       rows="10"
       v-model="description"
+      maxlength="100"
     ></textarea>
 
     <div class="row q-ma-md">
@@ -50,11 +53,13 @@
 <script setup>
 import { ref } from "vue";
 import moment from "moment";
+import { useQuasar } from "quasar";
 
 import MyBtn from "./MyBtn.vue";
 import { useTagStore } from "src/stores/tagStore";
 import { useNoteStore } from "../stores/noteStore";
 
+const $q = useQuasar();
 const category = ref([]);
 const tagStore = useTagStore();
 const noteStore = useNoteStore();
@@ -106,14 +111,22 @@ async function onSubmit() {
   const date = moment().add(timeSelect.value.value, "m").format();
 
   try {
-    noteStore.createNotes(
+    await noteStore.createNotes(
       title.value,
       date,
       description.value,
       categorySelect.value.value
     );
+    $q.notify({
+      message: "Nota creada",
+      color: "green-8",
+    });
   } catch (error) {
     console.log(error);
+    $q.notify({
+      message: "Hubo un error",
+      color: "red-8",
+    });
   }
 
   console.log(date);
@@ -137,9 +150,10 @@ input {
 }
 
 textarea {
+  font-size: 1.2em;
   outline: none;
   border: none;
-  font-weight: 900;
+  font-weight: 700;
   width: 90%;
 }
 
@@ -158,5 +172,15 @@ textarea::placeholder {
   font-size: 1.5em;
   opacity: 0.25;
   padding-bottom: 0.5em;
+}
+
+@media (max-width: 400px) {
+  .titulo {
+    font-size: 0.9em;
+  }
+
+  .text-area {
+    font-size: 0.8em;
+  }
 }
 </style>

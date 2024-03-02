@@ -2,6 +2,7 @@
   <q-dialog>
     <q-card style="min-width: 50%; min-height: 200px">
       <q-card-section>
+        <h1>Completadas</h1>
         <div class="text-dark">
           <q-list
             dark
@@ -11,12 +12,18 @@
             v-for="note in notes"
             :key="note._id"
           >
-            <q-item v-ripple>
+            <q-item clickable v-ripple class="q-py-md">
               <q-item-section
                 class="text-dark text-text-weight-bold"
                 style="font-size: 1.3em"
-                >{{ note.title }}</q-item-section
               >
+                <q-item-label>
+                  {{ note.title }}
+                </q-item-label>
+                <q-item-label class="text-dark text-text-weight-bold" caption>{{
+                  note.message
+                }}</q-item-label>
+              </q-item-section>
             </q-item>
           </q-list>
         </div>
@@ -26,10 +33,19 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   notes: {
     type: Array,
     default: () => [{ title: "Sin notificaciones" }],
   },
 });
 </script>
+
+<style scoped>
+h1 {
+  text-align: center;
+  font-size: 2em;
+  height: fit-content;
+  line-height: normal;
+}
+</style>

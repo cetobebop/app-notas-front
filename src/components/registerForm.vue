@@ -7,6 +7,7 @@
       v-model="email"
     ></MyInput>
     <MyInput
+      type="password"
       label="Contraseña"
       :rules="[vPassword]"
       v-model="password"

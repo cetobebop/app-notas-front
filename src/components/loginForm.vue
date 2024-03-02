@@ -7,6 +7,7 @@
       label="Email"
     ></MyInput>
     <MyInput
+      type="password"
       v-model="password"
       :rules="[vPassword]"
       class="q-mb-sm"
