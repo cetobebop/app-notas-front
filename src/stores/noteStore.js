@@ -82,19 +82,16 @@ export const useNoteStore = defineStore("noteStore", () => {
 
   async function deleteNote(_id) {
     try {
-      await api.delete(
-        `/notes/note/${_id}`,
-        {},
-        {
-          headers: {
-            x_access_token: userStore.token,
-          },
-        }
-      );
+      await api.delete(`/notes/note/${_id}`, {
+        headers: {
+          x_access_token: userStore.token,
+        },
+      });
 
       notes.value.notes = notes.value.notes.filter((n) => n._id !== _id);
     } catch (error) {
-      console.log(error);
+      console.log("error en delete");
+      console.log(error.response);
     }
   }
 

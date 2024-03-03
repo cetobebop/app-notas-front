@@ -18,8 +18,8 @@ const props = defineProps(["id"]);
 
 const noteStore = useNoteStore();
 
-function onClick() {
-  noteStore.deleteNote(props.id);
+async function onClick() {
+  await noteStore.deleteNote(props.id);
 }
 </script>
 
