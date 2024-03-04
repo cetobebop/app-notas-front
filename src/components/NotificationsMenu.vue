@@ -30,12 +30,14 @@ async function onClick() {
 
   if (notificationStore.notificationsLength) {
     notificationStore.getNotifications();
-
+    notificationStore.notificationsLength = 0;
     alert.value = true;
   }
 }
 
 function hide() {
   alert.value = false;
+  // notificationStore.notifications = null;
+  console.log("hide");
 }
 </script>

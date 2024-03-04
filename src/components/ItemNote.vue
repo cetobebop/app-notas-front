@@ -12,7 +12,10 @@
       <div class="justify-between full-width row" @click="onClick(note)">
         <div>
           <q-badge rounded :color="colors[note.tag]" class="q-mr-md" />
-          <span>{{ note.title?.slice(0, n) }}</span>
+          <span
+            >{{ note.title?.slice(0, n) }}
+            <b v-if="note.title.length >= n">...</b></span
+          >
         </div>
 
         <CircularProgress
@@ -68,7 +71,7 @@ function onHide() {
 
 watchEffect(() => {
   if (report.value.width < 600) {
-    n.value = 20;
+    n.value = 19;
   } else n.value = 100;
 });
 

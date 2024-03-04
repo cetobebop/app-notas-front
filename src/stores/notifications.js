@@ -18,7 +18,6 @@ export const useNotificationStore = defineStore("notificationStore", () => {
         },
       });
       notifications.value = data.notification;
-      console.log(notifications.value);
       notificationsLength.value = 0;
     } catch (error) {
       console.log("error en notification store");

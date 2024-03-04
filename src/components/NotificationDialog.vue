@@ -1,9 +1,14 @@
 <template>
   <q-dialog>
-    <q-card style="min-width: 50%; min-height: 200px">
+    <q-card style="min-width: 70%; min-height: 200px">
       <q-card-section>
         <h1>Completadas</h1>
-        <div class="text-dark">
+
+        <div v-if="!notes.length" class="full-width row justify-center q-my-md">
+          <q-spinner color="dark" size="8em" />
+        </div>
+
+        <div v-if="notes.length" class="text-dark">
           <q-list
             dark
             bordered
