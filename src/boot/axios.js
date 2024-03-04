@@ -15,11 +15,12 @@ api.interceptors.response.use(null, async function (error) {
   if (error.response.status === 401) {
     if (error?.response?.data?.errors[0]?.field === "x_access_token") {
       await userStore.refresh();
-
+      console.log(error.config.headers["x_access_token"], " token antes");
       error.config.headers["x_access_token"] = userStore.token;
+      console.log(error.config.headers["x_access_token"], " token despues");
     }
   }
-
+  console.log(error.response);
   console.log("error en interceptors");
   return Promise.reject(error);
 });
