@@ -2,7 +2,7 @@
   <filterTags class="q-mt-md"></filterTags>
 
   <div class="row container">
-    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-1 col-2 container-data">
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-2 container-data">
       <optionsNotes></optionsNotes>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-8 container-notas">

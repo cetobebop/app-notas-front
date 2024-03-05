@@ -122,17 +122,11 @@ async function onSubmit() {
       color: "green-8",
     });
   } catch (error) {
-    console.log(error);
     $q.notify({
       message: "Hubo un error",
       color: "red-8",
     });
   }
-
-  console.log(date);
-  // console.log(categorySelect.value);
-  // console.log(title.value);
-  // console.log(description.value);
 }
 </script>
 

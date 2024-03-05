@@ -36,6 +36,7 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach(async (to, from) => {
     if (to.meta.auth) {
       if (!localStorage.getItem("user")) {
+        console.log("retornado por router");
         return Router.push("/login");
       }
     }

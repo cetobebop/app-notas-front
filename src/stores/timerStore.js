@@ -12,7 +12,6 @@ export const useTimerStore = defineStore("timerStore", () => {
   function initTimer() {
     if (intervalId.value) {
       clearInterval(intervalId.value);
-      console.log("interval reiniciado");
     }
     const obtainTime = (isfirstTime) => {
       for (let i = 0; i < noteStore.notes.notes.length; i++) {

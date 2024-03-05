@@ -1,7 +1,7 @@
 <template>
   <q-input
+    autocomplete="off"
     style="color: aliceblue !important"
-    lazy-rules
     outlined
     dense
     label-color="white"

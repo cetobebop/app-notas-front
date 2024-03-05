@@ -72,8 +72,6 @@ export const useNoteStore = defineStore("noteStore", () => {
         }
       );
 
-      console.log(res.data);
-
       return res.data?.note;
     } catch (error) {
       console.log(error);
@@ -107,6 +105,7 @@ export const useNoteStore = defineStore("noteStore", () => {
 
       useReplaceArrayItem(notes.value.notes, res.data.updateNote);
     } catch (error) {
+      console.log(error);
       throw new Error(error.response);
     }
   }

@@ -6,7 +6,7 @@
       v-model="filterStore.model"
       :options="options"
       label="Etiqueta"
-      class="col-md-2 col-xs-10"
+      class="col-md-2 col-sm-4 col-xs-10"
       @update:model-value="handleSelect"
     >
       <template v-slot:prepend>

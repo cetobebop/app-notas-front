@@ -11,6 +11,8 @@ export const useUserStore = defineStore("userStore", () => {
     try {
       const res = await api.post("/auth/login", { userEmail, password });
       token.value = res.data.token;
+
+      localStorage.setItem("refreshToken", res.data.refreshToken);
       localStorage.setItem("user", res.data.id);
     } catch (error) {
       localStorage.removeItem("user");
@@ -24,8 +26,11 @@ export const useUserStore = defineStore("userStore", () => {
       const res = await api.post("/auth/singup", { userEmail, password });
       console.log(res.data);
       token.value = res.data.token;
+
+      localStorage.setItem("refreshToken", res.data.refreshToken);
       localStorage.setItem("user", res.data.id);
     } catch (error) {
+      console.log(error);
       localStorage.removeItem("user");
       throw Error(error.response.data.errors[0].msg);
     }
@@ -33,24 +38,29 @@ export const useUserStore = defineStore("userStore", () => {
 
   const refresh = async () => {
     try {
-      const { data } = await api.post("/auth/refresh");
+      const refreshtoken = localStorage.getItem("refreshToken");
+      const { data } = await api.post(
+        "/auth/refresh",
+        {},
+        {
+          headers: { refreshtoken },
+        }
+      );
 
       token.value = data.token;
     } catch (error) {
       console.log(error);
+      console.log("error en refresh");
+      // logout();
+      // location.reload();
     }
   };
 
-  const logout = async () => {
-    try {
-      await api.get("/auth/logout");
-    } catch (error) {
-      console.log(error, " err logout");
-    } finally {
-      token.value = "";
-      localStorage.removeItem("user");
-      evtSourceStore.closeEventSource();
-    }
+  const logout = () => {
+    token.value = "";
+    localStorage.removeItem("user");
+    localStorage.removeItem("refreshToken");
+    evtSourceStore.closeEventSource();
   };
 
   return {

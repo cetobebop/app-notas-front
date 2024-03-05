@@ -10,7 +10,6 @@ export const useNotificationStore = defineStore("notificationStore", () => {
   const userStore = useUserStore();
 
   async function getNotifications() {
-    console.log("se obtuvieron las notificaciones");
     try {
       const { data } = await api.get("/notifications/notification", {
         headers: {
@@ -32,7 +31,6 @@ export const useNotificationStore = defineStore("notificationStore", () => {
         },
       });
       notificationsLength.value = data.notificationLength;
-      console.log(data.notificationLength);
     } catch (error) {
       console.log("error en notification store");
     }

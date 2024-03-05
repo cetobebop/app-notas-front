@@ -37,7 +37,6 @@ async function onClick() {
 
 function hide() {
   alert.value = false;
-  // notificationStore.notifications = null;
-  console.log("hide");
+  notificationStore.notifications = [];
 }
 </script>

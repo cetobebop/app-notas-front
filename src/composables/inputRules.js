@@ -10,7 +10,7 @@ export const useRules = () => {
   const vPassword = (val) => {
     if (!val) return "Requerido";
     else if (/\s/.test(val)) return "Sin espacios en blanco";
-    else if (val.length < 6) return "Password necesita mas de 5 caracteres";
+    else if (val.length < 7) return "Password necesita mas de 6 caracteres";
   };
 
   const vTitleNote = (val) => {
