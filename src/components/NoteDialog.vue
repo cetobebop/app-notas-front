@@ -35,16 +35,23 @@
           <div
             class="full-width row justify-end q-mt-md relative-position container-btn-dialog"
           >
-            <NoteBtnDelete :id="note._id" class="btn-dialog"></NoteBtnDelete>
-            <MyBtn
+            <NoteBtnDelete
+              :id="note._id"
+              class="btn-dialog btn-delete"
+            ></NoteBtnDelete>
+
+            <q-btn
+              outline
+              style="background: #fff; color: rgb(124 58 237)"
               label="Cerrar"
               v-close-popup
-              class="q-ml-sm btn-dialog"
-            ></MyBtn>
+              class="text-weight-bold q-ml-sm btn-dialog q-pa-sm"
+            ></q-btn>
             <MyBtn
               type="submit"
               label="Actualizar"
               class="q-ml-sm btn-dialog"
+              :loading="noteStore.loading"
             ></MyBtn>
           </div>
         </q-form>
@@ -164,12 +171,17 @@ textarea::placeholder {
   }
 
   .container-btn-dialog {
-    justify-content: center;
-    gap: 4px;
+    gap: 6px;
   }
   .btn-dialog {
     width: 40%;
     font-size: 0.7em;
+  }
+
+  .btn-delete {
+    width: 20%;
+    position: relative;
+    left: -30%;
   }
 }
 </style>

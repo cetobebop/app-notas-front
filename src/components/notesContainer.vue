@@ -1,14 +1,23 @@
 <template>
   <div>
-    <div v-if="noteStore?.notes?.notes?.length" class="container-notas">
+    <div
+      v-if="noteStore?.notes?.notes?.length || noteStore?.notes === null"
+      class="container-notas"
+    >
       <ItemNote
         v-if="!noteStore.loading"
         :notes="noteStore.notes.notes"
       ></ItemNote>
-      <notesSkeleton v-if="noteStore.loading"></notesSkeleton>
+
+      <notesSkeleton
+        v-if="noteStore.loading || noteStore.loading === null"
+      ></notesSkeleton>
     </div>
 
-    <div v-if="!noteStore?.notes?.notes?.length" class="mensaje q-px-md">
+    <div
+      v-if="!noteStore?.notes?.notes?.length && noteStore.loading === false"
+      class="mensaje q-px-md"
+    >
       Vamos! crea una nota.
     </div>
     <div
@@ -27,12 +36,7 @@ import { useNoteStore } from "src/stores/noteStore";
 
 const noteStore = useNoteStore();
 
-try {
-  noteStore.getNotes();
-} catch (error) {
-  console.log(error);
-  console.log("error en notes container");
-}
+noteStore.getNotes();
 </script>
 
 <style scoped>

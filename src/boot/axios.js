@@ -20,7 +20,6 @@ api.interceptors.response.use(null, async function (error) {
     }
   }
 
-  console.log("error en interceptors");
   return Promise.reject(error);
 });
 

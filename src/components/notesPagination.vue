@@ -24,7 +24,7 @@ const max = ref(null);
 const current = ref(parseInt(sessionStorage.getItem("pagination") || 1));
 
 watchEffect(() => {
-  max.value = Math.ceil(noteStore.notes.totalNotes / 10);
+  max.value = Math.ceil(noteStore?.notes?.totalNotes / 10);
 });
 
 async function paginationHandle(value) {

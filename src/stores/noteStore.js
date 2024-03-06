@@ -10,9 +10,9 @@ import { useFilterProperties } from "src/composables/filterProperties";
 export const useNoteStore = defineStore("noteStore", () => {
   const userStore = useUserStore();
   const timerStore = useTimerStore();
-  const notes = ref({});
+  const notes = ref(null);
 
-  const loading = ref(false);
+  const loading = ref(null);
 
   async function getNotes(skip, limit, tags = [], text) {
     const query = skip && limit ? `?skip=${skip}&limit=${limit}` : "";
@@ -46,6 +46,8 @@ export const useNoteStore = defineStore("noteStore", () => {
     const data = useFilterProperties(parameters);
 
     try {
+      loading.value = true;
+
       const res = await api.post("/notes/note", data, {
         headers: {
           x_access_token: userStore.token,
@@ -57,6 +59,8 @@ export const useNoteStore = defineStore("noteStore", () => {
       timerStore.initTimer();
     } catch (error) {
       throw new Error(error.response);
+    } finally {
+      loading.value = false;
     }
   }
 
@@ -95,6 +99,8 @@ export const useNoteStore = defineStore("noteStore", () => {
 
   async function updateNote(noteToUpdate) {
     try {
+      loading.value = true;
+
       const data = useFilterProperties(noteToUpdate);
 
       const res = await api.patch(`/notes/note/${noteToUpdate._id}`, data, {
@@ -107,6 +113,8 @@ export const useNoteStore = defineStore("noteStore", () => {
     } catch (error) {
       console.log(error);
       throw new Error(error.response);
+    } finally {
+      loading.value = false;
     }
   }
 

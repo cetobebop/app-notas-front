@@ -45,7 +45,12 @@
 
     <div class="full-width row justify-end">
       <MyBtn label="Cerrar" v-close-popup></MyBtn>
-      <MyBtn type="submit" label="Crear" class="q-ml-sm"></MyBtn>
+      <MyBtn
+        type="submit"
+        label="Crear"
+        class="q-ml-sm"
+        :loading="noteStore.loading"
+      ></MyBtn>
     </div>
   </q-form>
 </template>

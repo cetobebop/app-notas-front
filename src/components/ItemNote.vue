@@ -24,7 +24,8 @@
         />
 
         <p style="font-size: 1.2em; margin-bottom: 0" class="col-12 q-mt-md">
-          {{ note.message.slice(0, 36) }}
+          {{ note.message.slice(0, 55) }}
+          <b v-if="note.message.length >= 55">...</b>
         </p>
       </div>
 
