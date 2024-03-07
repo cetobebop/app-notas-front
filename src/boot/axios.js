@@ -35,7 +35,7 @@ axiosRetry(api, {
   onRetry: async (retryCount) => {
     if (retryCount === 3) {
       userStore.logout();
-      location.href = "/login";
+      location.reload();
     }
     return;
   },

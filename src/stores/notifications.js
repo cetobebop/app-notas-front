@@ -9,8 +9,11 @@ export const useNotificationStore = defineStore("notificationStore", () => {
   const notificationsLength = ref();
   const userStore = useUserStore();
 
+  const loading = ref(null);
+
   async function getNotifications() {
     try {
+      loading.value = true;
       const { data } = await api.get("/notifications/notification", {
         headers: {
           x_access_token: userStore.token,
@@ -20,6 +23,8 @@ export const useNotificationStore = defineStore("notificationStore", () => {
       notificationsLength.value = 0;
     } catch (error) {
       console.log("error en notification store");
+    } finally {
+      loading.value = false;
     }
   }
 
@@ -41,5 +46,6 @@ export const useNotificationStore = defineStore("notificationStore", () => {
     notificationsLength,
     getNotifications,
     getNotificationLength,
+    loading,
   };
 });

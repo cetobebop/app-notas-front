@@ -44,7 +44,8 @@
     </div>
 
     <div class="full-width row justify-end">
-      <MyBtn label="Cerrar" v-close-popup></MyBtn>
+      <MyBtnClose></MyBtnClose>
+
       <MyBtn
         type="submit"
         label="Crear"
@@ -61,6 +62,7 @@ import moment from "moment";
 import { useQuasar } from "quasar";
 
 import MyBtn from "./MyBtn.vue";
+import MyBtnClose from "./MyBtnClose.vue";
 import { useTagStore } from "src/stores/tagStore";
 import { useNoteStore } from "../stores/noteStore";
 

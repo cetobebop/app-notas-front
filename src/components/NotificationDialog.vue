@@ -1,14 +1,25 @@
 <template>
   <q-dialog>
     <q-card style="min-width: 70%; min-height: 200px">
-      <q-card-section>
+      <q-card-section class="q-pa-lg">
         <h1>Completadas</h1>
 
-        <div v-if="!notes.length" class="full-width row justify-center q-my-md">
+        <div
+          v-if="notifications.loading"
+          class="full-width row justify-center q-my-md"
+        >
           <q-spinner color="dark" size="8em" />
         </div>
 
-        <div v-if="notes.length" class="text-dark">
+        <div
+          v-if="notifications.loading === false && !notes.length"
+          class="text-center q-mt-lg text-weight-regular"
+          style="font-size: 1.5em; opacity: 0.3"
+        >
+          No hay nada
+        </div>
+
+        <div v-if="notes.length && !notifications.loading" class="text-dark">
           <q-list
             dark
             bordered
@@ -38,6 +49,10 @@
 </template>
 
 <script setup>
+import { useNotificationStore } from "src/stores/notifications";
+
+const notifications = useNotificationStore();
+
 const props = defineProps({
   notes: {
     type: Array,

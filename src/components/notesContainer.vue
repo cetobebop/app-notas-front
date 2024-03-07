@@ -10,7 +10,10 @@
       ></ItemNote>
 
       <notesSkeleton
-        v-if="noteStore.loading || noteStore.loading === null"
+        v-if="
+          (noteStore.loading || noteStore.loading === null) &&
+          !noteStore?.notes?.notes?.length
+        "
       ></notesSkeleton>
     </div>
 
