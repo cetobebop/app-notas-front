@@ -16,9 +16,9 @@ import { useRouter } from "vue-router";
 const userStore = useUserStore();
 const router = useRouter();
 
-async function logoutSession() {
+function logoutSession() {
   try {
-    await userStore.logout();
+    userStore.logout();
     router.push("/login");
   } catch (error) {
     console.log(error, "error en logout");

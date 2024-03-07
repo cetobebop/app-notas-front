@@ -3,6 +3,7 @@
     <NotificationButton @click="onClick" />
     <NotificationDialog
       @hide="hide"
+      :notesLength="notesLength"
       :notes="notificationStore.notifications"
       v-model="alert"
     />
@@ -24,12 +25,16 @@ const evtSourceStore = useEvtSourceStore();
 evtSourceStore.notesServerEvent();
 
 const alert = ref(false);
+const notesLength = ref(null);
 
 async function onClick() {
   await notificationStore.getNotificationLength();
 
+  notesLength.value = notificationStore.notificationsLength;
+
   if (notificationStore.notificationsLength) {
     notificationStore.getNotifications();
+
     notificationStore.notificationsLength = 0;
     alert.value = true;
   }

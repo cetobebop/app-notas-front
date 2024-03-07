@@ -5,7 +5,7 @@
       class="container-notas"
     >
       <ItemNote
-        v-if="!noteStore.loading"
+        v-if="!noteStore.loading || noteStore?.notes?.notes?.length"
         :notes="noteStore.notes.notes"
       ></ItemNote>
 
