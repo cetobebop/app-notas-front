@@ -47,7 +47,7 @@
           </q-list>
 
           <div
-            v-if="notificationStore.notificationsLength !== notes.length"
+            v-if="notesLength !== notes.length"
             class="q-pa-md text-weight-bold"
             style="opacity: 0.3; font-size: 1.3em"
           >
