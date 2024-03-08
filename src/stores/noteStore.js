@@ -12,14 +12,15 @@ export const useNoteStore = defineStore("noteStore", () => {
   const timerStore = useTimerStore();
   const notes = ref(null);
 
-  const loading = ref(null);
+  const loadingGetRequest = ref(null);
+  const loadingOthersRequest = ref(null);
 
   async function getNotes(skip, limit, tags = [], text) {
     const query = skip && limit ? `?skip=${skip}&limit=${limit}` : "";
     const body = tags.length ? { tags, text } : { text };
 
     try {
-      loading.value = true;
+      loadingGetRequest.value = true;
       const res = await api.post(`notes/getnote${query}`, body, {
         headers: {
           x_access_token: userStore.token,
@@ -31,7 +32,7 @@ export const useNoteStore = defineStore("noteStore", () => {
       console.log(error);
       console.log("error store notes");
     } finally {
-      loading.value = false;
+      loadingGetRequest.value = false;
     }
   }
 
@@ -46,7 +47,7 @@ export const useNoteStore = defineStore("noteStore", () => {
     const data = useFilterProperties(parameters);
 
     try {
-      loading.value = true;
+      loadingOthersRequest.value = true;
 
       const res = await api.post("/notes/note", data, {
         headers: {
@@ -60,7 +61,7 @@ export const useNoteStore = defineStore("noteStore", () => {
     } catch (error) {
       throw new Error(error.response);
     } finally {
-      loading.value = false;
+      loadingOthersRequest.value = false;
     }
   }
 
@@ -99,7 +100,7 @@ export const useNoteStore = defineStore("noteStore", () => {
 
   async function updateNote(noteToUpdate) {
     try {
-      loading.value = true;
+      loadingOthersRequest.value = true;
 
       const data = useFilterProperties(noteToUpdate);
 
@@ -110,16 +111,18 @@ export const useNoteStore = defineStore("noteStore", () => {
       });
 
       useReplaceArrayItem(notes.value.notes, res.data.updateNote);
+      timerStore.initTimer();
     } catch (error) {
       console.log(error);
       throw new Error(error.response);
     } finally {
-      loading.value = false;
+      loadingOthersRequest.value = false;
     }
   }
 
   return {
-    loading,
+    loadingGetRequest,
+    loadingOthersRequest,
     notes,
     createNotes,
     getNotes,

@@ -9,7 +9,7 @@
       class="row items q-my-none container-note cursor-pointer"
       :key="index"
     >
-      <div class="justify-between full-width row" @click="onClick(note)">
+      <div class="justify-between full-width row" @click="onClick(note, index)">
         <div>
           <q-badge rounded :color="colors[note.tag]" class="q-mr-md" />
           <span
@@ -73,11 +73,16 @@ function onHide() {
 watchEffect(() => {
   if (report.value.width < 600) {
     n.value = 19;
-  } else n.value = 100;
+  } else {
+    n.value = 100;
+  }
+
+  console.log(props.notes);
 });
 
-function onClick(noteClicked) {
-  timer.value = noteClicked;
+function onClick(noteClicked, index) {
+  timer.value = props.notes[index];
+
   note.value = JSON.parse(JSON.stringify(noteClicked));
   active.value = true;
 }

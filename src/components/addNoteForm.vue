@@ -50,7 +50,7 @@
         type="submit"
         label="Crear"
         class="q-ml-sm"
-        :loading="noteStore.loading"
+        :loading="noteStore.loadingOthersRequest"
       ></MyBtn>
     </div>
   </q-form>

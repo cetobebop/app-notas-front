@@ -5,20 +5,22 @@
       class="container-notas"
     >
       <ItemNote
-        v-if="!noteStore.loading || noteStore?.notes?.notes?.length"
+        v-if="!noteStore.loadingGetRequest && noteStore?.notes?.notes?.length"
         :notes="noteStore.notes.notes"
       ></ItemNote>
 
       <notesSkeleton
         v-if="
-          (noteStore.loading || noteStore.loading === null) &&
-          !noteStore?.notes?.notes?.length
+          noteStore.loadingGetRequest || noteStore.loadingGetRequest === null
         "
       ></notesSkeleton>
     </div>
 
     <div
-      v-if="!noteStore?.notes?.notes?.length && noteStore.loading === false"
+      v-if="
+        !noteStore?.notes?.notes?.length &&
+        noteStore.loadingGetRequest === false
+      "
       class="mensaje q-px-md"
     >
       Vamos! crea una nota.

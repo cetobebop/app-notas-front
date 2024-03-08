@@ -45,7 +45,7 @@
               type="submit"
               label="Actualizar"
               class="q-ml-sm btn-dialog"
-              :loading="noteStore.loading"
+              :loading="noteStore.loadingOthersRequest"
             ></MyBtn>
           </div>
         </q-form>
